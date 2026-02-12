@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Card</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#050512;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:Segoe UI, sans-serif;
+  color:white;
+}
+
+.book{
+  width:700px;
+  height:420px;
+  position:relative;
+  perspective:2000px;
+}
+
+.page{
+  width:50%;
+  height:100%;
+  position:absolute;
+  top:0;
+  overflow:hidden;
+  border-radius:12px;
+}
+
+.left{
+  left:0;
+  background:#0a0a14;
+  box-shadow:0 0 25px cyan;
+}
+
+.right{
+  right:0;
+  background:linear-gradient(135deg,#00c6ff,#0072ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:32px;
+  font-weight:600;
+}
+
+.content{
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:25px;
+}
+
+.photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.controls{
+  position:absolute;
+  bottom:-70px;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+}
+
+button{
+  padding:10px 18px;
+  border:none;
+  border-radius:8px;
+  background:#00eaff;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="book">
+
+  <!-- LEFT PAGE -->
+  <div class="page left">
+    <div class="content" id="leftContent">
+      May this day bring you peace, joy, and all the good things your heart deserves.<br><br>
+      Wishing you a beautiful journey ahead 🌸
+    </div>
+  </div>
+
+  <!-- RIGHT PAGE -->
+  <div class="page right">
+    Happy Birthday 🎉
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <button onclick="prev()">← Prev</button>
+    <button onclick="next()">Next →</button>
+  </div>
+
+</div>
+
+<script>
+const photos = [
+  "./photos/photo1.jpg",
+  "./photos/photo2.jpg",
+  "./photos/photo3.jpg",
+  "./photos/photo4.jpg",
+  "./photos/photo5.jpg",
+  "./photos/photo6.jpg",
+  "./photos/photo7.jpg",
+  "./photos/photo8.jpg",
+  "./photos/photo9.jpg",
+  "./photos/photo10.jpg",
+  "./photos/photo11.jpg",
+  "./photos/photo12.jpg",
+  "./photos/photo13.jpg",
+  "./photos/photo14.jpg",
+  "./photos/photo15.jpg"
+];
+
+let index = -1;
+const leftContent = document.getElementById("leftContent");
+
+function next(){
+  if(index < photos.length - 1){
+    index++;
+    leftContent.innerHTML = `<img class="photo" src="${photos[index]}">`;
+  } else {
+    leftContent.innerHTML = `
+      💙 Thank you for being you.<br><br>
+      I’m so lucky to have you in my life.<br><br>
+      Happy Birthday ❤️
+    `;
+  }
+}
+
+function prev(){
+  if(index > 0){
+    index--;
+    leftContent.innerHTML = `<img class="photo" src="${photos[index]}">`;
+  } else {
+    index = -1;
+    leftContent.innerHTML = `
+      May this day bring you peace, joy, and all the good things your heart deserves.<br><br>
+      Wishing you a beautiful journey ahead 🌸
+    `;
+  }
+}
+</script>
+
+</body>
+</html>
